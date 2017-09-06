@@ -39,48 +39,145 @@ chmode u=rwx,go=rx test
 ```
 ## **linux目录配置**
 &ensp;&ensp;&ensp;&ensp;linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：    
-|    |    可共享           | 不可共享      |
-|----| ------------------- | ------------- |
-|不变|/usr (软件放置处)    |/etc (配置文件)|
-|    |/opt (第三方协力软件)|/boot (开机档) |
-|可变|/var/mail(邮箱)      |/var/run       |
-|    |/var/spool/news      |/var/lock      |
+<table>
+<thead>
+<tr>
+  <th ></th>
+  <th >可共享 </th>
+  <th >不可共享</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>不变</td>
+  <td>/usr(软件放置处)</td>
+  <td>/etc(配置文件)</td>
+</tr>
+<tr>
+  <td></td>
+  <td>/opt(第三方软件)</td>
+  <td>/boot(开机档)</td>
+</tr>
+<tr>
+  <td>可变</td>
+  <td>/var/mail(邮箱)</td>
+  <td>/var/run</td>
+</tr>
+<tr>
+  <td></td>
+  <td>/var/spool/news</td>
+  <td>/var/lock</td>
+</tr>
+
 &ensp;&ensp;&ensp;&ensp;linux根目录是linux最重要的目录，FHS标准建议根目录所在的分隔槽越小越好，因为分隔槽越小放入的无关数据越少，越不容易发生错误。根目录下的主要文件夹及其用途如下所示：
-|    目录           | 应放置文件内容      |
-| ------------------- | ------------- |
-|/bin|主要放置可执行文件，包括cat, chmod, chown, date, mv, mkdir, cp, bash等等常用的指令。|
-|/boot|主要在放置开机会使用到的文件|
-|/dev(device)|主要放置接口文件，如/dev/null, /dev/zero, /dev/tty, /dev/lp*, /dev/hd*, /dev/sd*等等|
-|/etc|主要放置系统的配置文件，包括人员的账号密码文件、 各种服务的启始档等等。一般来说，这个目录下的各文件属性是可以让一般使用者查阅的， 但是只有root有权力修改。|
-|/home|家目录，即~|
-|/lib|主要放置库函数|
-|/media|媒体文件夹，放置可以移除的设备包括光盘、DVD等|
-|/mnt|暂时挂载一些额外的设备|
-|/opt(optional application software packages)|第三方软件安装目录|
-|/root|系统管理员的家目录|
-|/sbin|用于设定系统环境的指令，这些指令只有root用户能使用，常见的包括：fdisk, fsck, ifconfig, init, mkfs等等。|
-|/srv|网络服务包括WWW，FTP等|
-|/tmp|临时文件存放位置|
+<table>
+<thead>
+<tr>
+  <th >目录</th>
+  <th >应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+  <td>/bin</td>
+  <td>主要放置可执行文件，包括cat, chmod, chown, date, mv, mkdir, cp, bash等等常用的指令。</td>
+</tr>
+
+<tr>
+  <td>/boot</td>
+  <td>主要在放置开机会使用到的文件</td>
+</tr>
+
+<tr>
+  <td>/dev(device)</td>
+  <td>主要放置接口文件，如/dev/null, /dev/zero, /dev/tty, /dev/lp*, /dev/hd*, /dev/sd*等等</td>
+</tr>
+
+<tr>
+  <td>/etc</td>
+  <td>主要放置系统的配置文件，包括人员的账号密码文件、各种服务的启始档等等。一般来说，这个目录下的各文件属性是可以让一般使用者查阅的，但是只有root有权力修改</td>
+</tr>
+
+<tr>
+  <td>/home</td>
+  <td>家目录，即~</td>
+</tr>
+
+<tr>
+  <td>/mnt</td>
+  <td>暂时挂载一些额外的设备</td>
+</tr>
+
+<tr>
+  <td>/opt(optional application software packages)</td>
+  <td>第三方软件安装目录</td>
+</tr>
+<tr>
+  <td>/root</td>
+  <td>系统管理员的家目录</td>
+</tr>
+<tr>
+  <td>/sbin</td>
+  <td>用于设定系统环境的指令，这些指令只有root用户能使用，常见的包括：fdisk, fsck, ifconfig, init, mkfs等等。</td>
+</tr>
+<tr>
+  <td>/srv</td>
+  <td>网络服务包括WWW，FTP等</td>
+</tr>
+<tr>
+  <td>/tmp</td>
+  <td>临时文件存放位置</td>
+</tr>
+</tbody>
+</table> 
 &ensp;&ensp;&ensp;&ensp;除了上面FHS规定的这几个文件夹外，根目录下/usr和/var也很重要。usr的全称为Unix Software Resource(之前一直以为是user/(ㄒoㄒ)/~~)是unix系统软件资源放置位置，它的次目录与跟目录的次目录比较相似，如下所示：
-|    目录           | 应放置文件内容      |
-| ------------------- | ------------- |
-|/usr/bin/|绝大多数用户可以使用的指令，与/usr主要的差别在于不包括开机相关的指令|
-|/usr/include/|c/c++使用的头文件存放位置|
-|/usr/lib/|各种应用软件的函数库和目标文件|
-|/usr/local/|系统管理员自行下载的软件建议安装到此目录，此目录下也有bin，etc，include，lib等此目录|
-|/usr/sbin/|非系统正常运行所需的系统指令(没太明白)|
-|/usr/share/|放置共享文件，住要为一些文本文件（说明文档、帮助文档）|
-|/usr/src/|一般源代码存放位置|
+<table>
+<thead>
+<tr>
+  <th >目录</th>
+  <th >应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+  <td>/usr/bin/</td>
+  <td>绝大多数用户可以使用的指令，与/usr主要的差别在于不包括开机相关的指令</td>
+</tr>
+
+<tr>
+  <td>/usr/include/</td>
+  <td>c/c++使用的头文件存放位置</td>
+</tr>
+
+<tr>
+  <td>/usr/lib/</td>
+  <td>各种应用软件的函数库和目标文件</td>
+</tr>
+
+<tr>
+  <td>/usr/local/</td>
+  <td>系统管理员自行下载的软件建议安装到此目录，此目录下也有bin，etc，include，lib等此目录</td>
+</tr>
+
+<tr>
+  <td>/usr/sbin/</td>
+  <td>非系统正常运行所需的系统指令(没太明白)</td>
+</tr>
+
+<tr>
+  <td>/usr/share/</td>
+  <td>放置共享文件，住要为一些文本文件（说明文档、帮助文档）</td>
+</tr>
+
+<tr>
+  <td>/usr/src/</td>
+  <td>一般源代码存放位置</td>
+</tr>
+</tbody>
+</table> 
 &ensp;&ensp;&ensp;&ensp;/var主要用于存储大型的数据文件，包括缓存文件、日志文件、软件运行时产生的文件以及数据库文件等，它的次目录结构如下：
-|    目录           | 应放置文件内容      |
-| ------------------- | ------------- |
-|/var/cache/|应用程序本身的缓存文件|
-|/var/lib/|应用程序运行过程中本身所需要用到的数据文件放置位置，例如MySQL的数据库放置在/var/lib/mysql/|
-|/var/lock/|linux系统下挂载各个系统资源所需要的锁的存放位置|
-|/var/log/|登录文件放置的位置|
-|/var/mail/|个人电子邮箱的目录，和/var/spool/mail互为链接文件|
-|/var/run/|程序或服务启动时存放进程PID的位置|
-|/var/spool/|存放进程的队列数据的位置|
 <table>
 <thead>
 <tr>
@@ -128,5 +225,6 @@ chmode u=rwx,go=rx test
 </tbody>
 </table>  
 &ensp;&ensp;&ensp;&ensp;综上，根目录下主要文件结构的目录树如下所示：
+<div align=center><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/directory_tree.gif></div> 
 
 
