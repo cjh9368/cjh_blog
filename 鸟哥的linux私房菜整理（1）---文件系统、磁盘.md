@@ -81,6 +81,52 @@ chmode u=rwx,go=rx test
 |/var/mail/|个人电子邮箱的目录，和/var/spool/mail互为链接文件|
 |/var/run/|程序或服务启动时存放进程PID的位置|
 |/var/spool/|存放进程的队列数据的位置|
+<table>
+<thead>
+<tr>
+  <th >目录</th>
+  <th >应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+  <td>/var/cache/</td>
+  <td>应用程序本身的缓存文件</td>
+</tr>
+
+<tr>
+  <td>/var/lib/</td>
+  <td>应用程序运行过程中本身所需要用到的数据文件放置位置，例如MySQL的数据库放置在/var/lib/mysql/</td>
+</tr>
+
+<tr>
+  <td>/var/lock/</td>
+  <td>linux系统下挂载各个系统资源所需要的锁的存放位置</td>
+</tr>
+
+<tr>
+  <td>/var/log/</td>
+  <td>登录文件放置的位置</td>
+</tr>
+
+<tr>
+  <td>/var/mail/</td>
+  <td>个人电子邮箱的目录，和/var/spool/mail互为链接文件</td>
+</tr>
+
+<tr>
+  <td>/var/run/</td>
+  <td>程序或服务启动时存放进程PID的位置</td>
+</tr>
+
+<tr>
+  <td>/var/spool/</td>
+  <td>存放进程的队列数据的位置</td>
+</tr>
+
+</tbody>
+</table>  
 &ensp;&ensp;&ensp;&ensp;综上，根目录下主要文件结构的目录树如下所示：
 
 
