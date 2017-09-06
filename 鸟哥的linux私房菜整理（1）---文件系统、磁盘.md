@@ -34,9 +34,12 @@ others= --- = 0+0+0 = 0
 chmode 770 test
 ```
 此外，chmod还有一种符号改变权限的方法，如下所示：   
-```  
+```Bash  
 chmode u=rwx,go=rx test
 ```   
+```Java
+public static void main(String[]args){} //Java
+```
 ## **linux目录配置**
 &ensp;&ensp;&ensp;&ensp;linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：    
 <table>
