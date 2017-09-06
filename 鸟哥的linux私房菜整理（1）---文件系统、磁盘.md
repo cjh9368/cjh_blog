@@ -2,16 +2,16 @@
 本文用于整理鸟哥的linux私房菜中关于文件系统、磁盘相关的知识，主要包括下面几个方面：
 - **linux用户组与权限配置**
 - **linux目录配置**
-- **linux文件搜索和文件权限相关知识**
+- **linux文件和目录管理**
 - **linux磁盘挂载与格式化**
 - **linux压缩和打包相关**
 ---------------
 ## **linux用户组与权限配置**  
 linux任何一个文件或目录都具有User、Group和Others三个身份的个别权限。分别表示文件所有者、所在组别和既非文件所有者也非同一组别的用户对该文件的权限。此外root用户拥有对所有文件的全部权限。关于用户及root的信息存在/etc/passwd中,组名存在/etc/group中,个人的密码存在/etc/shadow中。  
 需要查询linux的文件属性可以用ls -al命令，ls是list的意思,-al表示输出当前目录下所有文件拥有的权限和属性。出现的七个字段的意义如下：   
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<div align=left><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/%E6%9D%83%E9%99%90%E5%B1%9E%E6%80%A7.gif"></div>  
+<div align=left><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/%E6%9D%83%E9%99%90%E5%B1%9E%E6%80%A7.gif"></div>  
 
-第一栏分别表示文件的类型（文件、目录或链接文件），文件拥有者、管理组和others所拥有的对文件操作的权限。三个权限分别为可读、可写和可执行。后面几拦的意义如图所示。   
+第一栏分别表示文件的类型（文件、目录或链接文件），文件拥有者、管理组和others所拥有的对文件操作的权限。三个权限分别为可读、可写和可执行。后面几栏的意义如图所示。   
 改变文件属性的命令主要有三个：chgrp、chown和chmod，分别用于改变文件的群组、用户和权限。   
 chgrp是change group的意思,用法如下,其中-R表示递归的改变目录下所有文件的群组。
 
@@ -45,7 +45,7 @@ chmode 770 test
 ```Bash  
 chmode u=rwx,go=rx test
 ```   
---------------------------
+
 ## **linux目录配置**
 linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：
 
@@ -99,6 +99,60 @@ var主要用于存储大型的数据文件，包括缓存文件、日志文件�
 |/var/spool/|存放进程的队列数据的位置|  
 
 综上，根目录下主要文件结构的目录树如下所示： 
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<div align=left><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/directory_tree.gif"></div> 
+<div align=left><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/directory_tree.gif"></div> 
+
+## **linux文件和目录管理**
+linux的文件查阅命令主要有下面几种：
+- **cat由第一行开始显示文件内容**
+- **tac从最后一行开始显示**
+- **more一页一页的显示文件内容**
+- **less与more 类似，但是比more更好的是，他可以往前翻页**
+- **head只看头几行**
+- **tail只看末尾几行** 
+
+cat的全称是concatenate，用法如下：
+
+```Bash
+cat test
+cat -n test #打印的同时显示行号
+```
+tac即从末尾往前显示，用法和cat相同。  
+more表示一页一页显示文件内容，首先执行more进入逐页浏览的状态（如下所示），然后按空格进入下一页，回车下一行，b往回翻页，完成浏览后按q退出浏览模式。
+
+```Bash
+[root@www ~]# more /etc/man.config
+#
+# Generated automatically from man.conf.in by the
+# configure script.
+#
+# man.conf from man-1.6d
+....(中间省略)....
+--More--(28%)  
+```
+less的功能与more类似，但是比more更加灵活，利用less进入浏览模式后可以输入以下命令继续浏览文件：
+
+```Bash
+空白键    ：向下翻动一页；
+[pagedown]：向下翻动一页；
+[pageup]  ：向上翻动一页；
+/字串     ：向下搜寻『字串』的功能；
+?字串     ：向上搜寻『字串』的功能；
+n         ：重复前一个搜寻 (与 / 或 ? 有关！)
+N         ：反向的重复前一个搜寻 (与 / 或 ? 有关！)
+q         ：离开 less 这个程序；
+```
+head和tail操作比较简单，如下所示：
+
+```Bash
+head [-n number] 文件 
+head -n 20 /etc/man.config #显示前20行
+head -n -100 /etc/man.config #显示倒数100行之前的行数
+
+tail [-n number] 文件 
+tail -n 20 /etc/man.config
+tail -n +100 /etc/man.config #显示100行以后的文件
+```
+
+
 
 
