@@ -230,6 +230,7 @@ chmode u=rwx,go=rx test
 </tbody>
 </table>  
 &ensp;&ensp;&ensp;&ensp;综上，根目录下主要文件结构的目录树如下所示： 
+
 <div align=center><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/directory_tree.gif></div> 
 
 
