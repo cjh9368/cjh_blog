@@ -231,3 +231,23 @@ public static void main(String[]args){} //Java
 <div align=center><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/directory_tree.gif></div> 
 
 
+代码高亮
+----------
+在三个反引号后面加上编程语言的名字，另起一行开始写代码，最后一行再加上三个反引号。
+```Java
+public static void main(String[]args){} //Java
+```
+```c
+int main(int argc, char *argv[]) //C
+```
+```Bash
+echo "hello GitHub" #Bash
+```
+```javascript
+document.getElementById("myH1").innerHTML="Welcome to my Homepage"; //javascipt
+```
+```cpp
+string &operator+(const string& A,const string& B) //cpp
+```
+
+
