@@ -69,7 +69,7 @@ chmode u=rwx,go=rx test
   <td>/var/lock</td>
 </tr>
 
-&ensp;&ensp;&ensp;&ensp;linux根目录是linux最重要的目录，FHS标准建议根目录所在的分隔槽越小越好，因为分隔槽越小放入的无关数据越少，越不容易发生错误。根目录下的主要文件夹及其用途如下所示：
+&ensp;&ensp;&ensp;&ensp;根目录是linux最重要的目录，FHS标准建议根目录所在的分隔槽越小越好，因为分隔槽越小放入的无关数据越少，越不容易发生错误。根目录下的主要文件夹及其用途如下所示：
 <table>
 <thead>
 <tr>
