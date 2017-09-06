@@ -11,7 +11,7 @@ linux任何一个文件或目录都具有User、Group和Others三个身份的个
 需要查询linux的文件属性可以用ls -al命令，ls是list的意思,-al表示输出当前目录下所有文件拥有的权限和属性。出现的七个字段的意义如下：   
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<div align=left><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/%E6%9D%83%E9%99%90%E5%B1%9E%E6%80%A7.gif"></div>  
 
-&ensp;&ensp;&ensp;&ensp;第一栏分别表示文件的类型（文件、目录或链接文件），文件拥有者、管理组和others所拥有的对文件操作的权限。三个权限分别为可读、可写和可执行。后面几拦的意义如图所示。   
+第一栏分别表示文件的类型（文件、目录或链接文件），文件拥有者、管理组和others所拥有的对文件操作的权限。三个权限分别为可读、可写和可执行。后面几拦的意义如图所示。   
 改变文件属性的命令主要有三个：chgrp、chown和chmod，分别用于改变文件的群组、用户和权限。   
 chgrp是change group的意思,用法如下,其中-R表示递归的改变目录下所有文件的群组。
 
