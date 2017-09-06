@@ -12,31 +12,31 @@
 <div align=center><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/%E6%9D%83%E9%99%90%E5%B1%9E%E6%80%A7.gif"></div>  
 &ensp;&ensp;&ensp;&ensp;第一栏分别表示文件的类型（文件、目录或链接文件），文件拥有者、管理组和others所拥有的对文件操作的权限。三个权限分别为可读、可写和可执行。后面几拦的意义如图所示。   
 &ensp;&ensp;&ensp;&ensp;改变文件属性的命令主要有三个：chgrp、chown和chmod，分别用于改变文件的群组、用户和权限。   
-&ensp;&ensp;&ensp;&ensp;chgrp是change group的意思,用法如下,其中-R表示递归的改变目录下所有文件的群组。
+&ensp;&ensp;&ensp;&ensp;chgrp是change group的意思,用法如下,其中-R表示递归的改变目录下所有文件的群组。   
 ```shell
 chgrp [-R] group dirname/filename
 chgrp users install.log
 chgrp -R users tmp
-```
-&ensp;&ensp;&ensp;&ensp;chown是change owner的意思，其中的owner必须是/etc/passwd中存在的用户，另外还可以用于改变文件所在的群组，它的用法如下。
+```  
+&ensp;&ensp;&ensp;&ensp;chown是change owner的意思，其中的owner必须是/etc/passwd中存在的用户，另外还可以用于改变文件所在的群组，它的用法如下。  
 ```shell
 chown [-R] owner dirname/filename
 chown [-R] owner group dirname/filename
 chown bin install.log
 chown root root install.log
-```
+```  
 &ensp;&ensp;&ensp;&ensp;chmod是change mode的意思。文件的权限字符为-rwxrwxrwx，分别表示用户、群组和others的rwx权限，rwx分别用4、2、1表示，对于一部分的权限将这三个分数叠加即可，例如将某个文件test的权限配置为[-rwxrwx---]，则它的分数为：  
 owner = rwx = 4+2+1 = 7  
 group = rwx = 4+2+1 = 7  
 others= --- = 0+0+0 = 0  
-配置命令为：
+配置命令为：  
 ```shell
 chmode 770 test
 ```
-此外，chmod还有一种符号改变权限的方法，如下所示：
-```shell
+此外，chmod还有一种符号改变权限的方法，如下所示：   
+```shell  
 chmode u=rwx,go=rx test
-```
+```   
 ## **linux目录配置**
 &ensp;&ensp;&ensp;&ensp;linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：    
 <table>
