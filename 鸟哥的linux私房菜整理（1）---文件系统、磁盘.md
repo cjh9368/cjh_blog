@@ -37,13 +37,11 @@ others= --- = 0+0+0 = 0
 chmode 770 test
 ```
 此外，chmod还有一种符号改变权限的方法，如下所示： 
-  
+
 ```Bash  
 chmode u=rwx,go=rx test
 ```   
-```Java
-public static void main(String[]args){} //Java
-```
+--------------------------
 ## **linux目录配置**
 &ensp;&ensp;&ensp;&ensp;linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：    
 <table>
@@ -231,27 +229,7 @@ public static void main(String[]args){} //Java
 
 </tbody>
 </table>  
-&ensp;&ensp;&ensp;&ensp;综上，根目录下主要文件结构的目录树如下所示：
+&ensp;&ensp;&ensp;&ensp;综上，根目录下主要文件结构的目录树如下所示： 
 <div align=center><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/directory_tree.gif></div> 
-
-
-代码高亮
-----------
-在三个反引号后面加上编程语言的名字，另起一行开始写代码，最后一行再加上三个反引号。
-```Java
-public static void main(String[]args){} //Java
-```
-```c
-int main(int argc, char *argv[]) //C
-```
-```Bash
-echo "hello GitHub" #Bash
-```
-```javascript
-document.getElementById("myH1").innerHTML="Welcome to my Homepage"; //javascipt
-```
-```cpp
-string &operator+(const string& A,const string& B) //cpp
-```
 
 
