@@ -43,7 +43,7 @@ chmode u=rwx,go=rx test
 ```   
 --------------------------
 ## **linux目录配置**
-&ensp;&ensp;&ensp;&ensp;linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：    
+&ensp;&ensp;&ensp;&ensp;linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：
 <table>
 <thead>
 <tr>
@@ -73,9 +73,9 @@ chmode u=rwx,go=rx test
   <td>/var/spool/news</td>
   <td>/var/lock</td>
 </tr>
+</table> 
 
 &ensp;&ensp;&ensp;&ensp;根目录是linux最重要的目录，FHS标准建议根目录所在的分隔槽越小越好，因为分隔槽越小放入的无关数据越少，越不容易发生错误。根目录下的主要文件夹及其用途如下所示：
-
 <table>
 <thead>
 <tr>
@@ -139,7 +139,6 @@ chmode u=rwx,go=rx test
 </table> 
 
 &ensp;&ensp;&ensp;&ensp;除了上面FHS规定的这几个文件夹外，根目录下/usr和/var也很重要。usr的全称为Unix Software Resource(之前一直以为是user/(ㄒoㄒ)/~~)是unix系统软件资源放置位置，它的次目录与跟目录的次目录比较相似，如下所示：
-
 <table>
 <thead>
 <tr>
