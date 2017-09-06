@@ -44,6 +44,14 @@ chmode u=rwx,go=rx test
 --------------------------
 ## **linux目录配置**
 &ensp;&ensp;&ensp;&ensp;linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：
+
+|    |    可共享           | 不可共享      |
+|----| ------------------- | ------------- |
+|不变|/usr (软件放置处)    |/etc (配置文件)|
+|    |/opt (第三方协力软件)|/boot (开机档) |
+|可变|/var/mail(邮箱)      |/var/run       |
+|    |/var/spool/news      |/var/lock      |
+
 <table>
 <thead>
 <tr>
