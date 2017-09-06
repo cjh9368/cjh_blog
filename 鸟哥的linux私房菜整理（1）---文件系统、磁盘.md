@@ -33,10 +33,11 @@ chown root root install.log
 ```  
 owner = rwx = 4+2+1 = 7  
 group = rwx = 4+2+1 = 7  
-others= --- = 0+0+0 = 0  
-配置命令为：  
-
+others= --- = 0+0+0 = 0   
 ```
+配置命令为：
+
+``` 
 chmode 770 test
 ```
 此外，chmod还有一种符号改变权限的方法，如下所示： 
