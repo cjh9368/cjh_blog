@@ -38,16 +38,39 @@ others= --- = 0+0+0 = 0
 配置命令为：
 
 ``` 
-chmode 770 test
+chmod 770 test
 ```
 此外，chmod还有一种符号改变权限的方法，如下所示： 
 
 ```Bash  
-chmode u=rwx,go=rx test
-```   
+chmod u=rwx,go=rx test
+```
+文件默认权限可以通过umask查看。和前面chmod的分数不同，umask的分数为默认值需要减去的权限，r、w、x分别为4、2、1，若创建为文件，则默认没有可运行权限，最大只有666分，若创建为目录则默认所有权限均开放，最大为777分。举个例子，如果查到umask分数为022，那么就说明被拿掉了group和others的w权限，所以对于文件和目录相应的权限计算就如下所示：
+
+```Bash
+创建文件时：(-rw-rw-rw-) - (-----w--w-) ==> -rw-r--r--
+创建目录时：(drwxrwxrwx) - (d----w--w-) ==> drwxr-xr-x
+```
+另外，对于umask而言更重要的特性是可以为不同的目标定制权限，例如要设置只有文件的所有者可以修改所有文件，那么可以设置umask为022，拿掉除创建用户外所有用户的w权限，如下所示：
+
+```Bash
+umask 022
+```
+除了上面的9个权限外，在ext2/ext3文件系统中还有一些隐藏权限（A\S\a\c\d\i\s\u）其中最重要的权限为a和i，a权限表示用户只能对该文件进行添加操作，不能进行删除和修改操作，i权限表示该文件不能被删除、改名、配置链接，也无法对文件新增数据，只有root用户可以配置这个属性。
+配置和查看这些隐藏属性可以通过chattr和lsattr进行，如下所示：
+
+```Bash
+chattr [+-=][ASacdistu] 文件或目录名称
+lsattr [-adR] 文件或目录
+
+[root@www tmp]# chattr +i attrtest <==给予 i 的属性
+[root@www tmp]# chattr +aij attrtest
+[root@www tmp]# lsattr attrtest
+----ia---j--- attrtest
+```
 
 ## **linux目录配置**
-linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：
+linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )规则，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：
 
 |    |可共享|不可共享|
 |:----:| :---------------| :-----------|
