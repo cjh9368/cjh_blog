@@ -3,10 +3,11 @@
 - **linux用户组与权限配置**
 - **linux目录配置**
 - **linux文件和目录管理**
-- **linux磁盘挂载与格式化**
+- **linux文件系统和磁盘挂载**
 - **linux压缩和打包相关**
 ---------------
-## **linux用户组与权限配置**  
+## **linux用户组与权限配置**
+### **基本权限**
 linux任何一个文件或目录都具有User、Group和Others三个身份的个别权限。分别表示文件所有者、所在组别和既非文件所有者也非同一组别的用户对该文件的权限。此外root用户拥有对所有文件的全部权限。关于用户及root的信息存在/etc/passwd中,组名存在/etc/group中,个人的密码存在/etc/shadow中。  
 需要查询linux的文件属性可以用ls -al命令，ls是list的意思,-al表示输出当前目录下所有文件拥有的权限和属性。出现的七个字段的意义如下：   
 <div align=left><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/%E6%9D%83%E9%99%90%E5%B1%9E%E6%80%A7.gif"></div>  
@@ -45,6 +46,7 @@ chmod 770 test
 ```Bash  
 chmod u=rwx,go=rx test
 ```
+### **默认权限**
 文件默认权限可以通过umask查看。和前面chmod的分数不同，umask的分数为默认值需要减去的权限，r、w、x分别为4、2、1，若创建为文件，则默认没有可运行权限，最大只有666分，若创建为目录则默认所有权限均开放，最大为777分。举个例子，如果查到umask分数为022，那么就说明被拿掉了group和others的w权限，所以对于文件和目录相应的权限计算就如下所示：
 
 ```Bash
@@ -56,6 +58,7 @@ chmod u=rwx,go=rx test
 ```Bash
 umask 022
 ```
+### **隐藏权限**
 除了上面的9个权限外，在ext2/ext3文件系统中还有一些隐藏权限（A\S\a\c\d\i\s\u）其中最重要的权限为a和i，a权限表示用户只能对该文件进行添加操作，不能进行删除和修改操作，i权限表示该文件不能被删除、改名、配置链接，也无法对文件新增数据，只有root用户可以配置这个属性。
 配置和查看这些隐藏属性可以通过chattr和lsattr进行，如下所示：
 
@@ -68,6 +71,11 @@ lsattr [-adR] 文件或目录
 [root@www tmp]# lsattr attrtest
 ----ia---j--- attrtest
 ```
+### **特殊权限SUID、SGID**
+此外，还有一种权限是在对某个文件具有x权限的用户暂时拥有这个文件所有者的权限。举个例子，linux中所有用户的密码都存放在/etc/shadow这个文件里面，这个文件的权限为-r-------- 1 root root，只有root用户可以修改这个文件，对一般用户而言可以通过操作具有SUID权限的/usr/bin/passwd文件使得用户具有暂时的root权限来修改用户的密码，示意图如下：  
+<div align=left><img src="https://github.com/cjh9368/cjh_blog/blob/master/img/suid.gif"></div> 
+SGID权限也与之类似，只是改为拥有这个文件所在群组的权限。
+
 
 ## **linux目录配置**
 linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )规则，将文件按照是否可以共享和是否可以改动定义为以下四种交互形式：
@@ -75,7 +83,7 @@ linux的目录配置遵循着FHS(Filesystem Hierarchy Standard )规则，将文�
 |    |可共享|不可共享|
 |:----:| :---------------| :-----------|
 |不变|/usr (软件放置处)    |/etc (配置文件)|
-|    |/opt (第三方协力软件)|/boot (开机档) |
+|    |/opt (第三方软件)|/boot (开机档) |
 |可变|/var/mail(邮箱)      |/var/run       |
 |    |/var/spool/news      |/var/lock      |
 
@@ -175,6 +183,7 @@ tail [-n number] 文件
 tail -n 20 /etc/man.config
 tail -n +100 /etc/man.config #显示100行以后的文件
 ```
+## **linux文件系统和磁盘挂载**
 
 
 
